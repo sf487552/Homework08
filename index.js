@@ -11,7 +11,7 @@ const fs = require('fs');
 const { checkPrime } = require('crypto');
 
 // generate html file path
-// const generateHtml = './Homework08/TeamProfile.html'
+const generateHtml = './TeamProfile.html'
 
 // array of objects that holds team members
 let teamMembers = [];
