@@ -32,6 +32,8 @@ body {
 .card-body {
     background-color: lightblue;
     color: rgb(58, 69, 80);
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
