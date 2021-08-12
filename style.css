@@ -13,7 +13,7 @@ body {
 
 #navbar {
     background-color: navy;
-    color: gray;
+    color: white;
     font-size: 50px;
     text-align: center;
 }
@@ -31,7 +31,7 @@ body {
 
 .card-body {
     background-color: lightblue;
-    color: gray;
+    color: rgb(58, 69, 80);
 }
 
 .container {
