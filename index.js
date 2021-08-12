@@ -8,30 +8,22 @@ const inquirer = require("inquirer");
 
 // file system
 const fs = require('fs');
-const { checkPrime } = require('crypto');
+// const { checkPrime } = require('crypto');
 
 // generate html file path
-const generateHtml = './TeamProfile.html'
+// const generateHtml = './Homework08/TeamProfile.html'
 
 // array of objects that holds team members
 let teamMembers = [];
 
-// test code
-// let manager = new Manager("steve","31","email@email.com","role")
-
-// console.log(manager.getName());
-// console.log(manager.getID());
-// console.log(manager.getEmail());
-// console.log(manager.getRole());
-// console.log(manager.getOfficeNumber());
-
 // inquirer
-inquirer.prompt([
+inquirer
+.prompt([
   /* Pass your questions in here */
   {
-  name:"managerName",
-  type:"input",
-  message:"enter manager's name",
+    name:"managerName",
+    type:"input",
+    message:"enter manager's name",
   },
   {
     name:"managerID",
@@ -60,17 +52,8 @@ inquirer.prompt([
   // create manager
   let manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNumber);
   // add to team members
-  teamMembers.push(manag);
-  if(answers.addTeamMember === "Engineer")
-  {
-    addEngineer();
-  }else if(answers.addTeamMember === "Intern")
-  {
-    addIntern();
-  }else
-  {
-    // should never run
-  }
+  teamMembers.push(manager);
+  evaluteAddedTeamMember(answers.addTeamMember)
 })
 
 .catch((error) => {
@@ -83,12 +66,13 @@ inquirer.prompt([
 
 function addEngineer()
 {
-  inquirer.prompt([
+  inquirer
+  .prompt([
     /* Pass your questions in here */
     {
-    name:"engineerName",
-    type:"input",
-    message:"enter Engineer's name",
+      name:"engineerName",
+      type:"input",
+      message:"enter Engineer's name",
     },
     {
       name:"engineerID",
@@ -115,22 +99,10 @@ function addEngineer()
   ])
   .then((answers) => {
     // Use user feedback for... whatever!!
-    let intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
+    let engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub);
     // add to array
-    teamMembers.push(intern);
-    // evaluate additions
-    if(answers.addTeamMember === "Engineer")
-    {
-      // call engineer
-      addEngineer();
-    }else if(answers.addTeamMember === "Intern")
-    {
-      // cakk intern
-      addIntern();
-    }else
-    {
-      generateHtml();
-    }
+    teamMembers.push(Engineer);
+    evaluteAddedTeamMember(answers.addTeamMember)
   })
   .catch((error) => {
     if (error.isTtyError) {
@@ -144,12 +116,13 @@ function addEngineer()
 // call this as many times as team members added
 function addIntern()
 {
-  inquirer.prompt([
+  inquirer
+  .prompt([
     /* Pass your questions in here */
     {
-    name:"engineerName",
-    type:"input",
-    message:"enter intern's name",
+      name:"engineerName",
+      type:"input",
+      message:"enter intern's name",
     },
     {
       name:"internID",
@@ -180,18 +153,7 @@ function addIntern()
     // add to array
     teamMembers.push(intern);
     // evaluate additions
-    if(answers.addTeamMember === "Engineer")
-    {
-      // call engineer
-      addEngineer();
-    }else if(answers.addTeamMember === "Intern")
-    {
-      // cakk intern
-      addIntern();
-    }else
-    {
-      generateHtml();
-    }
+    evaluteAddedTeamMember(answers.addTeamMember)
   })
   .catch((error) => {
     if (error.isTtyError) {
@@ -204,13 +166,13 @@ function addIntern()
 
 function evaluteAddedTeamMember(result)
 {
-  if(result === "Engineer")
+  if(result === "engineer")
   {
     // call engineer
     addEngineer();
-  }else if(result === "Intern")
+  }else if(result === "intern")
   {
-    // cakk intern
+    // call intern
     addIntern();
   }else
   {
