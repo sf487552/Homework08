@@ -11,21 +11,19 @@ const fs = require('fs');
 const { checkPrime } = require('crypto');
 
 // generate html file path
-const generateHtml = './Homework08/TeamProfile.html'
+// const generateHtml = './Homework08/TeamProfile.html'
 
 // array of objects that holds team members
 let teamMembers = [];
 
-
-
 // test code
-let manager = new Manager("steve","31","email@email.com","role")
+// let manager = new Manager("steve","31","email@email.com","role")
 
-console.log(manager.getName());
-console.log(manager.getID());
-console.log(manager.getEmail());
-console.log(manager.getRole());
-console.log(manager.getOfficeNumber());
+// console.log(manager.getName());
+// console.log(manager.getID());
+// console.log(manager.getEmail());
+// console.log(manager.getRole());
+// console.log(manager.getOfficeNumber());
 
 // inquirer
 inquirer.prompt([
@@ -103,9 +101,9 @@ function addEngineer()
       message:"enter Engineer's Email Address",
     },
     {
-      name:"engineerSchool",
+      name:"engineerGithub",
       type:"input",
-      message:"enter Engineer's school",
+      message:"enter Engineer's Github Username",
     },
     {
       name: "AddTeamMembers",
@@ -204,9 +202,25 @@ function addIntern()
   });
 }
 
+function evaluteAddedTeamMember(result)
+{
+  if(result === "Engineer")
+  {
+    // call engineer
+    addEngineer();
+  }else if(result === "Intern")
+  {
+    // cakk intern
+    addIntern();
+  }else
+  {
+    generateHtml();
+  }
+}
+
 // loop through team and generate html
 function generateHtml()
 {
-    // Use user feedback for... whatever!!
-    fs.writeFileSync(generateHtml,"")
+  // Use user feedback for... whatever!!
+  fs.writeFileSync(generateHtml,"")
 }
