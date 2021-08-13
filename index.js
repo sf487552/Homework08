@@ -11,7 +11,7 @@ const fs = require('fs');
 // const { checkPrime } = require('crypto');
 
 // generate html file path
-const generateHtmlFilePath = './Homework08/TeamProfile.html'
+const generateHtmlFilePath = './TeamProfile.html';
 
 // array of objects that holds team members
 let teamMembers = [];
@@ -171,9 +171,8 @@ function evaluteAddedTeamMember(result) {
   }
 }
 
-function generateInitialHTML()
-{
-  return`<!DOCTYPE html>
+function generateInitialHTML() {
+  return `<!DOCTYPE html>
   <html lang="en">
   
   <head>
@@ -194,16 +193,26 @@ function generateInitialHTML()
           </nav>
       </header>
       <div class="container">
-          <div class="row" id="team-cards"`
+          <div class="row" id="team-cards"`;
 }
 
-function generateTeamMemberHtml(teamMember)
-{
+function generateTeamMemberHtml(teamMember) {
+  return `            <div>
+  <div class="card">
+      <div class="card-header">
+          <h3>${teamMember.getName()}</h3>
+          <h4>${teamMember.getRole()}</h4><i class="material-icons">content_paste</i>
+      </div>
 
+      <div class="card-body">
+          <p class="id">ID: ${teamMember.getId()}</p>
+          <p class="email">Email: <a href="mailto:${teamMember.getEmail()}">${teamMember.getEmail()}</a></p>
+          ${teamMember.getRoleHtml()}
+  </div>
+</div>`;
 }
 
-function generateFinalHtml()
-{
+function generateFinalHtml() {
   return `</div>
 
   </body>
@@ -218,13 +227,12 @@ function generateFinalHtml()
 // loop through team and generate html
 function generateHtml() {
   // Use user feedback for... whatever!!
-  fs.writeFileSync(generateHtmlFilePath, "")
+  fs.writeFileSync(generateHtmlFilePath, "");
   let htmlData = generateInitialHTML();
-  for(var a in teamMembers)
+  for (var a in teamMembers) 
   {
     htmlData += generateTeamMemberHtml(teamMembers[a]);
   }
   htmlData += generateFinalHtml();
-  fs.writeFileSync(generateFinalHtml,htmlData);
-
+  fs.writeFileSync(generateHtmlFilePath, htmlData);
 }
