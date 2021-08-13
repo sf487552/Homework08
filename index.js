@@ -8,7 +8,6 @@ const inquirer = require("inquirer");
 
 // file system
 const fs = require('fs');
-// const { checkPrime } = require('crypto');
 
 // generate html file path
 const generateHtmlFilePath = './TeamProfile.html';
