@@ -10,7 +10,7 @@ const inquirer = require("inquirer");
 const fs = require('fs');
 
 // generate html file path
-const generateHtmlFilePath = './TeamProfile.html';
+const generateHtmlFilePath = './Documents/Homework/Homework08/TeamProfile.html';
 
 // array of objects that holds team members
 let teamMembers = [];
@@ -224,7 +224,8 @@ function generateFinalHtml() {
 }
 
 // loop through team and generate html
-function generateHtml() {
+function generateHtml() 
+{
   // Use user feedback for... whatever!!
   fs.writeFileSync(generateHtmlFilePath, "");
   let htmlData = generateInitialHTML();
