@@ -166,6 +166,7 @@ function evaluteAddedTeamMember(result) {
     // call intern
     addIntern();
   } else {
+    console.log("createhtml")
     generateHtml();
   }
 }
@@ -196,6 +197,10 @@ function generateInitialHTML() {
 }
 
 function generateTeamMemberHtml(teamMember) {
+  let uniqueProfileText = ""
+  if (teamMember.getRole()==="Manager"){
+    uniqueProfileText = teamMember.getOfficeNumber()
+  }
   return `            <div>
   <div class="card">
       <div class="card-header">
@@ -206,7 +211,7 @@ function generateTeamMemberHtml(teamMember) {
       <div class="card-body">
           <p class="id">ID: ${teamMember.getId()}</p>
           <p class="email">Email: <a href="mailto:${teamMember.getEmail()}">${teamMember.getEmail()}</a></p>
-          ${teamMember.getRoleHtml()}
+          ${uniqueProfileText}
   </div>
 </div>`;
 }
@@ -227,12 +232,16 @@ function generateFinalHtml() {
 function generateHtml() 
 {
   // Use user feedback for... whatever!!
-  fs.writeFileSync(generateHtmlFilePath, "");
+  // fs.writeFileSync(generateHtmlFilePath, "");
   let htmlData = generateInitialHTML();
-  for (var a in teamMembers) 
+  // console.log(teamMembers)
+  for (var index= 0; index < teamMembers.length;index++) 
   {
-    htmlData += generateTeamMemberHtml(teamMembers[a]);
+    console.log(teamMembers[index])
+    htmlData += generateTeamMemberHtml(teamMembers[index]);
   }
+  console.log("after 4")
   htmlData += generateFinalHtml();
+  console.log("htmlData")
   fs.writeFileSync(generateHtmlFilePath, htmlData);
 }
