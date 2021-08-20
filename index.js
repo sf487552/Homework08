@@ -10,7 +10,7 @@ const inquirer = require("inquirer");
 const fs = require('fs');
 
 // generate html file path
-const generateHtmlFilePath = './Documents/Homework/Homework08/TeamProfile.html';
+const generateHtmlFilePath = './TeamProfile.html';
 
 // array of objects that holds team members
 let teamMembers = [];
@@ -183,7 +183,7 @@ function generateInitialHTML() {
       <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link rel="stylesheet" href="style.css">s
+      <link rel="stylesheet" href="style.css">
   </head>
   
   <body>
@@ -234,14 +234,20 @@ function generateHtml()
   // Use user feedback for... whatever!!
   // fs.writeFileSync(generateHtmlFilePath, "");
   let htmlData = generateInitialHTML();
-  // console.log(teamMembers)
-  for (var index= 0; index < teamMembers.length;index++) 
-  {
-    console.log(teamMembers[index])
-    htmlData += generateTeamMemberHtml(teamMembers[index]);
-  }
+  // console.log("asfdasdf",teamMembers.length,htmlData)
+
+  // for (var index= 0; index < teamMembers.length;index++) 
+  // {
+  //   console.log("MANAGER", teamMembers[index])
+  //   htmlData += generateTeamMemberHtml(teamMembers[index]);
+  // }
+  teamMembers.forEach(x => {
+    console.log(x.name);
+    htmlData += generateTeamMemberHtml(x)
+  })
+
   console.log("after 4")
   htmlData += generateFinalHtml();
-  console.log("htmlData")
+  console.log(htmlData)
   fs.writeFileSync(generateHtmlFilePath, htmlData);
 }

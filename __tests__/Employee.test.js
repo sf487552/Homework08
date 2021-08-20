@@ -7,7 +7,6 @@ describe('employee', () => {
         const employee = new Employee(expected, "1","");
         const actual = employee.name;
         expect (actual).toEqual(expected)
-
     });
 })
 
@@ -17,7 +16,6 @@ describe('employee', () => {
         const employee = new Employee(expected, "1","");
         const actual = employee.id;
         expect (actual).toEqual(expected)
-
     });
 })
 
@@ -27,7 +25,6 @@ describe('employee', () => {
         const employee = new Employee(expected, "1","");
         const actual = employee.email;
         expect (actual).toEqual(expected)
-
     });
 })
 
@@ -37,7 +34,6 @@ describe('employee', () => {
         const employee = new Employee(expected, "1","");
         const actual = employee.getRole;
         expect (actual).toEqual(expected)
-
     });
 })
 
